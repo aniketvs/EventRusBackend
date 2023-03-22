@@ -68,7 +68,7 @@ app.post('/signup', uploads, async (req, res) => {
         },
     });
     const url = `${process.env.EMAIL_VERIFY_URL}signup/${result._id}/verify/${Token.token}`;
-
+   //http://localhost:3000/
     let mailoption = {
         from: 'sharmavinod8454@.com',
         to: result.email,
@@ -381,7 +381,7 @@ app.post('/register', async (req, resp) => {
         },
     });
     const url = `${process.env.EMAIL_VERIFY_URL}register/${result._id}/UserVerification/${Token.token}`;
-
+ //http://localhost:3000/
     let mailoption = {
         from: 'sharmavinod8454@.com',
         to: result.email,
