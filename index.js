@@ -67,7 +67,7 @@ app.post('/signup', uploads, async (req, res) => {
             refreshToken: process.env.OAUTH_REFRESH_TOKEN,
         },
     });
-    const url = `http://localhost:3000/signup/${result._id}/verify/${Token.token}`;
+    const url = `${process.env.EMAIL_VERIFY_URL}signup/${result._id}/verify/${Token.token}`;
 
     let mailoption = {
         from: 'sharmavinod8454@.com',
@@ -128,7 +128,7 @@ app.post('/login', async (req, res) => {
                     }).save();
                 }
                 console.log(data.password);
-                const url = `http://localhost:3000/signup/${data._id}/verify/${Token.token}`;
+                const url = `${process.env.EMAIL_VERIFY_URL}signup/${data._id}/verify/${Token.token}`;
 
                 let transporte = nodemailer.createTransport({
                     service: 'gmail',
@@ -380,7 +380,7 @@ app.post('/register', async (req, resp) => {
             refreshToken: process.env.OAUTH_REFRESH_TOKEN,
         },
     });
-    const url = `http://localhost:3000/register/${result._id}/UserVerification/${Token.token}`;
+    const url = `${process.env.EMAIL_VERIFY_URL}register/${result._id}/UserVerification/${Token.token}`;
 
     let mailoption = {
         from: 'sharmavinod8454@.com',
@@ -428,7 +428,7 @@ app.post('/resendEmail', async (req, res) => {
             refreshToken: process.env.OAUTH_REFRESH_TOKEN,
         },
     });
-    const url = `http://localhost:3000/register/${req.body.getid}/UserVerification/${Token.token}`;
+    const url = `${process.env.EMAIL_VERIFY_URL}register/${req.body.getid}/UserVerification/${Token.token}`;
 
     let mailoption = {
         from: 'sharmavinod8454@.com',
@@ -509,5 +509,5 @@ app.post('/bookContact',async(req,res)=>{
 });
     
 
-const PORT=process.env.PORT || 5000;
-app.listen(PORT);
+const POR=5000 | process.env.PORT;
+app.listen(POR);
