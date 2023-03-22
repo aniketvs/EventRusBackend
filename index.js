@@ -15,7 +15,6 @@ const nodemailer = require('nodemailer');
 //add product model
 const add_products = require('./add_products_db/schema');
 
-console.log(process.env.EMAIL_VERIFY_URL);
 
 //profile multer
 require('./profile_db/config');
@@ -67,8 +66,8 @@ app.post('/signup', uploads, async (req, res) => {
             refreshToken: process.env.OAUTH_REFRESH_TOKEN,
         },
     });
-
-    const url = `https://eventrus.netlify.app/signup/${result._id}/verify/${Token.token}`;
+    
+    const url = `${process.env.EMAIL_VERIFY_URL}signup/${result._id}/verify/${Token.token}`;
    //http://localhost:3000/
     let mailoption = {
         from: 'sharmavinod8454@.com',
@@ -129,7 +128,7 @@ app.post('/login', async (req, res) => {
                     }).save();
                 }
                 console.log(data.password);
-                const url = `https://eventrus.netlify.app/signup/${data._id}/verify/${Token.token}`;
+                const url = `${process.env.EMAIL_VERIFY_URL}signup/${data._id}/verify/${Token.token}`;
 
                 let transporte = nodemailer.createTransport({
                     service: 'gmail',
@@ -381,7 +380,7 @@ app.post('/register', async (req, resp) => {
             refreshToken: process.env.OAUTH_REFRESH_TOKEN,
         },
     });
-    const url = `https://eventrus.netlify.app/register/${result._id}/UserVerification/${Token.token}`;
+    const url = `${process.env.EMAIL_VERIFY_URL}register/${result._id}/UserVerification/${Token.token}`;
  //http://localhost:3000/
     let mailoption = {
         from: 'sharmavinod8454@.com',
@@ -429,7 +428,7 @@ app.post('/resendEmail', async (req, res) => {
             refreshToken: process.env.OAUTH_REFRESH_TOKEN,
         },
     });
-    const url = `https://eventrus.netlify.app/register/${req.body.getid}/UserVerification/${Token.token}`;
+    const url = `${process.env.EMAIL_VERIFY_URL}register/${req.body.getid}/UserVerification/${Token.token}`;
 
     let mailoption = {
         from: 'sharmavinod8454@.com',
