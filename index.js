@@ -117,7 +117,7 @@ app.post('/login', async (req, res) => {
         const match = await bycrypt.compare(req.body.password, data.password);
         data = data.toObject();
         delete data.password;
-        if (match) {
+        if (!match) {
 
             if (!data.verified) {
                 let Token = await token_signup.findOne({ userid: data._id });
